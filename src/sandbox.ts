@@ -152,3 +152,31 @@ const greet3 = (user: objWithName) => {
   console.log(`${user.name} has uid of ${user.uid}}`)
 }
 
+// function signatures
+// function signatures are the general structure of a function what arg it has ex1 and what data. these set up the future format of a undefined variable
+
+// ex1
+let greet4: (a:string, b: string) => void;
+greet4 = (name: string, greeting: string) => {
+  console.log(`${name} says ${greeting}`);
+}
+// ex2
+let calc: (a: number, b: number, c: string) => number;
+
+calc = (numOne: number, numTwo: number, action: string) => {
+  if (action === 'add'){
+    return numOne + numTwo
+  } else {
+    return numOne - numTwo
+  }
+}
+
+// example3 
+let logDetails2 : (obj: {name: string, age: number}) => void;
+
+type person = {name: string, age: number}
+
+logDetails2 = (ninja2: person) => {
+  console.log(`${ninja2.name} is ${ninja.age} years old`)
+}
+
