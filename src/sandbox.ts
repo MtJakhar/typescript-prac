@@ -137,3 +137,18 @@ const minus = (a: number, b: number) => {
 }
 let result = minus(10, 7)
 
+// Type aliases
+
+// The following functions have very complex types, you can create alias for them to make them shorter if you are to create more similar functions.
+
+type StringOrNum = string | number
+type objWithName = { name: string, uid: StringOrNum }
+
+const logDetails = (uid: StringOrNum, item: string) => {
+  console.log(`${item} has uid of ${uid}}`)
+}
+
+const greet3 = (user: objWithName) => {
+  console.log(`${user.name} has uid of ${user.uid}}`)
+}
+
