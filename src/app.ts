@@ -1,3 +1,35 @@
+import { Invoice } from './classes/Invoice.js'
+// when importing you must use the javascript version even if it is a ts file you are using it in.
+// You must put type='module' in the script. 
+// the module can be only be used on modern browsers
+
+// INterfaces
+// An interface is used to ensure the proper structure of an object
+interface IsPerson {
+  name: string;
+  age: number;
+  speak(a: string): void;
+  spend(a:number): number;
+}
+// if you are not matching the structure of the interface isPerson It will show an error
+const me: IsPerson = {
+  name: 'shaun',
+  age: 30,
+  speak(text :string): void {
+    console.log(text)
+  },
+  spend(amount: number): number {
+    console.log('I spent', amount);
+    return amount
+  }
+}
+
+const greetPerson = (person: IsPerson) => {
+  console.log('hello ', person.name)
+}
+
+greetPerson(me)
+
 // // The DOM And Type casting
 // const anchor = document.querySelector('a')!;
 // // if(anchor) {
@@ -31,37 +63,6 @@ form.addEventListener('submit', (e: Event) => {
     amount.value
   )
 })
-
-// classes
-// here is how yu create classes in typescirpt, it is very similar to javasscript except that you can declare types in the beginning of the class
-class Invoice {
-  client: string;
-  details: string;
-  amount: number;
-  // every type is considered to be public by default meaning that it can be logged by the console, and it can be accessed outside of the class, The private class ensures that the variable is only accessable with in the class. readonly is another modifer which can be used, which allows you to access and read the variable in and out side of the class, but you wont be able to edit the class.
-  // public amount: number;
-  // amount: number; same as public above
-
-  // private amount: number;
-  // readonly amount:number;
-
-
-  constructor(c: string, d: string, a: number) {
-    this.client = c;
-    this.details = d;
-    this.amount = a
-  }
-// below as a shorthand version above if you used access modifiers, it only works if you use access modifiers 
-  // constructor(
-  //   readonly client: string,
-  //   private details: string,
-  //   public amount: number,
-  // ){}
-
-  format() {
-    return `${this.client} owes $${this.amount} for ${this.details}`
-  }
-}
 
 const invOne = new Invoice('mario', 'work on the mario website', 250);
 const invTwo = new Invoice('luigi', 'work on the luigi website', 350);
