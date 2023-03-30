@@ -75,3 +75,12 @@ form.addEventListener('submit', (e) => {
 // invoices.forEach(inv => {
 //   console.log(inv.client, inv.details, inv.amount, inv.format());
 // })
+// Generics
+// TypeScript generics provide a way to make components work with any data type and not restrict to one data type. Generics uses the type variable <T>, a special kind of variable that denotes types and remembers the type that the user provides and works with that particular type only (preserving type information)
+const addUID = (obj) => {
+    let uid = Math.floor(Math.random() * 100);
+    return Object.assign(Object.assign({}, obj), { uid });
+};
+let docThree = addUID({ name: 'yoshi', age: 40 });
+let docFour = addUID({ name: 'yoshi', age: 40 });
+console.log(docThree.name);
