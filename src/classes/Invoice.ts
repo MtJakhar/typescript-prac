@@ -1,6 +1,10 @@
+import { HasFormatter } from "../interfaces/HasFormatter.js";
+
 // classes
 // here is how yu create classes in typescirpt, it is very similar to javasscript except that you can declare types in the beginning of the class
-export class Invoice {
+
+
+export class Invoice implements HasFormatter {
   client: string;
   details: string;
   amount: number;

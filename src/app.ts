@@ -1,7 +1,21 @@
 import { Invoice } from './classes/Invoice.js'
+import { Payment } from './classes/Payment.js'
+import { HasFormatter } from './interfaces/HasFormatter.js'
 // when importing you must use the javascript version even if it is a ts file you are using it in.
 // You must put type='module' in the script. 
 // the module can be only be used on modern browsers
+
+let docOne: HasFormatter
+let docTwo: HasFormatter
+
+docOne = new Invoice('yoshi', 'web work', 250)
+docTwo = new Invoice('mario', 'pluming work', 200)
+
+let docs: HasFormatter[] = [];
+docs.push(docOne);
+docs.push(docTwo);
+
+console.log(docs)
 
 // INterfaces
 // An interface is used to ensure the proper structure of an object
@@ -55,30 +69,33 @@ const details = document.querySelector('#details') as HTMLInputElement
 const amount = document.querySelector('#amount') as HTMLInputElement
 
 form.addEventListener('submit', (e: Event) => {
+
+  let doc: HasFormatter
+  if(type.value === 'invoice'){
+    doc = new Invoice(tofrom.value, details.value, amount.valueAsNumber)
+  } else {
+    doc = new Payment(tofrom.value, details.value, amount.valueAsNumber)
+  }
+
   e.preventDefault()
-  console.log(
-    type.value,
-    tofrom.value,
-    details.value,
-    amount.value
-  )
+  console.log(doc)
 })
 
-const invOne = new Invoice('mario', 'work on the mario website', 250);
-const invTwo = new Invoice('luigi', 'work on the luigi website', 350);
+// const invOne = new Invoice('mario', 'work on the mario website', 250);
+// const invTwo = new Invoice('luigi', 'work on the luigi website', 350);
 
 // access modifier
 // just as you can create arrays that only take in strings example: string[]
 // You can also restrict that array in only taking values associated with a certain class. In the example below they use the INvoice class as an example.
-let invoices: Invoice[] = [];
+// let invoices: Invoice[] = [];
 // this will work
-invoices.push(invOne)
-invoices.push(invTwo)
+// invoices.push(invOne)
+// invoices.push(invTwo)
 // this wont work
 // invoices.push('string')
 
 
-invoices.forEach(inv => {
-  console.log(inv.client, inv.details, inv.amount, inv.format());
-})
+// invoices.forEach(inv => {
+//   console.log(inv.client, inv.details, inv.amount, inv.format());
+// })
 

@@ -1,4 +1,34 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const Invoice_js_1 = require("./classes/Invoice.js");
+const Payment_js_1 = require("./classes/Payment.js");
+// when importing you must use the javascript version even if it is a ts file you are using it in.
+// You must put type='module' in the script. 
+// the module can be only be used on modern browsers
+let docOne;
+let docTwo;
+docOne = new Invoice_js_1.Invoice('yoshi', 'web work', 250);
+docTwo = new Invoice_js_1.Invoice('mario', 'pluming work', 200);
+let docs = [];
+docs.push(docOne);
+docs.push(docTwo);
+console.log(docs);
+// if you are not matching the structure of the interface isPerson It will show an error
+const me = {
+    name: 'shaun',
+    age: 30,
+    speak(text) {
+        console.log(text);
+    },
+    spend(amount) {
+        console.log('I spent', amount);
+        return amount;
+    }
+};
+const greetPerson = (person) => {
+    console.log('hello ', person.name);
+};
+greetPerson(me);
 // // The DOM And Type casting
 // const anchor = document.querySelector('a')!;
 // // if(anchor) {
@@ -17,43 +47,27 @@ const tofrom = document.querySelector('#tofrom');
 const details = document.querySelector('#details');
 const amount = document.querySelector('#amount');
 form.addEventListener('submit', (e) => {
+    let doc;
+    if (type.value === 'invoice') {
+        doc = new Invoice_js_1.Invoice(tofrom.value, details.value, amount.valueAsNumber);
+    }
+    else {
+        doc = new Payment_js_1.Payment(tofrom.value, details.value, amount.valueAsNumber);
+    }
     e.preventDefault();
-    console.log(type.value, tofrom.value, details.value, amount.value);
+    console.log(doc);
 });
-// classes
-// here is how yu create classes in typescirpt, it is very similar to javasscript except that you can declare types in the beginning of the class
-class Invoice {
-    // every type is considered to be public by default meaning that it can be logged by the console, and it can be accessed outside of the class, The private class ensures that the variable is only accessable with in the class. readonly is another modifer which can be used, which allows you to access and read the variable in and out side of the class, but you wont be able to edit the class.
-    // public amount: number;
-    // amount: number; same as public above
-    // private amount: number;
-    // readonly amount:number;
-    constructor(c, d, a) {
-        this.client = c;
-        this.details = d;
-        this.amount = a;
-    }
-    // below as a shorthand version above if you used access modifiers, it only works if you use access modifiers 
-    // constructor(
-    //   readonly client: string,
-    //   private details: string,
-    //   public amount: number,
-    // ){}
-    format() {
-        return `${this.client} owes $${this.amount} for ${this.details}`;
-    }
-}
-const invOne = new Invoice('mario', 'work on the mario website', 250);
-const invTwo = new Invoice('luigi', 'work on the luigi website', 350);
+// const invOne = new Invoice('mario', 'work on the mario website', 250);
+// const invTwo = new Invoice('luigi', 'work on the luigi website', 350);
 // access modifier
 // just as you can create arrays that only take in strings example: string[]
 // You can also restrict that array in only taking values associated with a certain class. In the example below they use the INvoice class as an example.
-let invoices = [];
+// let invoices: Invoice[] = [];
 // this will work
-invoices.push(invOne);
-invoices.push(invTwo);
+// invoices.push(invOne)
+// invoices.push(invTwo)
 // this wont work
 // invoices.push('string')
-invoices.forEach(inv => {
-    console.log(inv.client, inv.details, inv.amount, inv.format());
-});
+// invoices.forEach(inv => {
+//   console.log(inv.client, inv.details, inv.amount, inv.format());
+// })
