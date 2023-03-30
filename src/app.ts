@@ -1,4 +1,5 @@
 import { Invoice } from './classes/Invoice.js'
+import { ListTemplate } from './classes/ListTemplate.js'
 import { Payment } from './classes/Payment.js'
 import { HasFormatter } from './interfaces/HasFormatter.js'
 // when importing you must use the javascript version even if it is a ts file you are using it in.
@@ -52,6 +53,9 @@ greetPerson(me)
 
 // console.log(anchor.href)
 
+// list template instance
+const ul = document.querySelector('ul')!
+const list = new ListTemplate(ul)
 
 // The ! mark mean you know it exist so ignore the error
 // const form = document.querySelector('form')!;
@@ -78,7 +82,8 @@ form.addEventListener('submit', (e: Event) => {
   }
 
   e.preventDefault()
-  console.log(doc)
+
+  list.render(doc, type.value, 'end');
 })
 
 // const invOne = new Invoice('mario', 'work on the mario website', 250);

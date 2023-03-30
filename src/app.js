@@ -1,6 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const Invoice_js_1 = require("./classes/Invoice.js");
+const ListTemplate_js_1 = require("./classes/ListTemplate.js");
 const Payment_js_1 = require("./classes/Payment.js");
 // when importing you must use the javascript version even if it is a ts file you are using it in.
 // You must put type='module' in the script. 
@@ -35,6 +36,9 @@ greetPerson(me);
 // //   console.log(anchor.href)
 // // }
 // console.log(anchor.href)
+// list template instance
+const ul = document.querySelector('ul');
+const list = new ListTemplate_js_1.ListTemplate(ul);
 // The ! mark mean you know it exist so ignore the error
 // const form = document.querySelector('form')!;
 // typecasting
@@ -55,7 +59,7 @@ form.addEventListener('submit', (e) => {
         doc = new Payment_js_1.Payment(tofrom.value, details.value, amount.valueAsNumber);
     }
     e.preventDefault();
-    console.log(doc);
+    list.render(doc, type.value, 'end');
 });
 // const invOne = new Invoice('mario', 'work on the mario website', 250);
 // const invTwo = new Invoice('luigi', 'work on the luigi website', 350);
