@@ -104,6 +104,12 @@ form.addEventListener('submit', (e: Event) => {
 //   console.log(inv.client, inv.details, inv.amount, inv.format());
 // })
 
+// Enums
+// An enum is a special "class" that represents a group of constants (unchangeable variables).
+// Enums come in two flavors string and numeric.
+
+enum ResourceType { BOOK, AUTHOR, FILM, DIRECTOR, PERSON }
+
 // Generics
 // TypeScript generics provide a way to make components work with any data type and not restrict to one data type. Generics uses the type variable <T>, a special kind of variable that denotes types and remembers the type that the user provides and works with that particular type only (preserving type information)
 
@@ -123,6 +129,23 @@ interface Resource<T>{
   resourceName: string;
   date: object;
 }
+
+// tuples
+// Are similar to arrays, the elements within are fixed unlike arrays
+
+// this works
+let arr = ['ryu', 25, true];
+arr[0] = false;
+arr[1] = 'yoshi';
+arr = [30, false, 'yoshi'];
+
+// this works
+let tup: [string, number, boolean] = ['ryu', 25, true];
+
+// this wont work, because value must match order defined
+// let tup: [string, number, boolean] = [40, 'ryu', true];
+
+
 
 
 
